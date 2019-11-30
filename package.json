@@ -1,0 +1,26 @@
+{
+  "name": "general-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jeffchoi72/general-server.git",
+  "author": "jeffchoi72 <ihello0720@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon -e ts --exec ts-node ./src/app.ts"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.0",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-router": "^7.0.42",
+    "nodemon": "^2.0.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}
