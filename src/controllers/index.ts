@@ -17,6 +17,7 @@ export class Routes {
 
   private setRoutes() {
     this.router.get("/posts", this.postController.getPosts);
+    this.router.get("/posts/:id", this.postController.getPost);
 
     this.router.all("*", (ctx: Context) => {
       ctx.status = 404;
