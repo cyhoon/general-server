@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import BodyParser from 'koa-bodyparser';
+import kcors from 'koa-cors';
 import Router from 'koa-router';
 import Container from 'typedi';
 
@@ -18,6 +19,7 @@ class Server {
   }
 
   private setMiddlewares() {
+    this.app.use(kcors());
     this.app.use(BodyParser());
   }
 
