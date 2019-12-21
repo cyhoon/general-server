@@ -4,13 +4,17 @@ import { Context } from 'koa';
 import Router from 'koa-router';
 import { Service } from 'typedi';
 
+import { AuthController } from './auth.controller';
 import { PostController } from './post.controller';
 
 @Service()
 export class Routes {
   private router: Router;
 
-  constructor(private postController: PostController) {
+  constructor(
+    private postController: PostController,
+    private authController: AuthController
+  ) {
     this.router = new Router();
     this.setRoutes();
   }
@@ -18,6 +22,7 @@ export class Routes {
   private setRoutes() {
     this.router.get("/posts", this.postController.getPosts);
     this.router.get("/posts/:id", this.postController.getPost);
+    this.router.post("/auth/signup", this.authController.signup);
 
     this.router.all("*", (ctx: Context) => {
       ctx.status = 404;
