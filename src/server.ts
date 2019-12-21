@@ -1,10 +1,11 @@
-import Koa from 'koa';
+import Koa, { Context } from 'koa';
 import BodyParser from 'koa-bodyparser';
 import kcors from 'koa-cors';
 import Router from 'koa-router';
 import Container from 'typedi';
 
 import { Routes } from './controllers';
+import { LogService } from './services';
 
 class Server {
   private app: Koa;
@@ -25,6 +26,21 @@ class Server {
 
   private setRoutes() {
     this.router.use("/api", Container.get(Routes).getRoutes());
+
+    this.app.use((ctx: Context, next: Koa.Next) => {
+      const logService = Container.get(LogService);
+
+      const { method, url, header } = ctx.request;
+
+      logService.log({
+        method,
+        url,
+        header,
+        apiName: `[${method}]-${url}`
+      });
+
+      next();
+    });
 
     this.app.use(this.router.routes());
     this.app.use(this.router.allowedMethods());
