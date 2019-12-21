@@ -9,6 +9,7 @@
     "start": "nodemon -e ts --exec ts-node ./src/app.ts"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.5.0",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "^0.0.16",
